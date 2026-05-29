@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --radius: 0.5rem;
+  }
+
+  /* Light-section overrides: applied to white card sections (projects, tech stack)
+     so that shadcn CSS-var-based classes (bg-card, border-border, text-foreground…)
+     resolve to light-theme values instead of the global dark defaults. */
+  .light-section {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 9%;
+    --border: 0 0% 89.8%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    /* 3D folder fallback colours (used when no gradient prop is supplied) */
+    --folder-back: #e2e8f0;
+    --folder-tab: #cbd5e1;
+    --folder-front: #f8fafc;
+  }
+
+  /* scroll-behavior: auto — scroll-linked hero→projects must track wheel position with no CSS smoothing delay */
+  html {
+    scroll-behavior: auto;
+  }
+
+  @font-face {
+    font-family: "Geist";
+    src: url("/fonts/geist-sans-500.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Geist";
+    src: url("/fonts/geist-sans-400.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Geist";
+    src: url("/fonts/geist-sans-300.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Geist", system-ui, sans-serif;
+    font-weight: 500;
+    font-synthesis: none;
+  }
+
+  #root {
+    @apply min-h-[100dvh] w-full;
+  }
+}
+
+/* ── Stacked-card GPU compositing ────────────────────────────────────── */
+@layer utilities {
+  /* Force GPU layer for sticky cards = eliminates repaint jank during scroll */
+  .will-change-transform {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Rounded top corners with a smooth anti-aliased edge on transforms */
+  .rounded-t-\[2rem\] {
+    isolation: isolate;
+  }
+}
