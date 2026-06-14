@@ -75,7 +75,7 @@ export function AboutSection() {
           <div className="relative w-full justify-self-center lg:max-w-[380px] lg:justify-self-end">
             <div className="overflow-hidden rounded-[28px] shadow-[0_24px_80px_-24px_rgba(0,0,0,0.5)] ring-1 ring-white/10">
               <img
-                src="/images/IMAGE1.png"
+                src="/images/IMAGE1.svg"
                 alt="Sarwadnya Maile"
                 className="block aspect-[3/4] h-auto w-full object-cover"
                 loading="lazy"
